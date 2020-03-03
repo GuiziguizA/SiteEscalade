@@ -3,8 +3,7 @@ package sig.org.classe;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,11 +14,12 @@ import javax.persistence.ManyToOne;
 
 public class Commentaires implements Serializable{
 	
-	@Id 
-	private String codeCommentaire;
+	@Id @GeneratedValue
+	private Long codeCommentaire;
 	@ManyToOne
 	@JoinColumn(name="CODE_UTILISATEUR")
 private Utilisateur utilisateur;
+private String description;	
 	@ManyToOne
 	private Voie voie;
 private Date date;
@@ -34,7 +34,7 @@ public Commentaires() {
 
 
 
-public Commentaires(String codeCommentaire,Utilisateur utilisateur, Date date) {
+public Commentaires(Utilisateur utilisateur, Date date,String description) {
 	super();
 	this.utilisateur = utilisateur;
 	this.date = date;
@@ -67,6 +67,15 @@ public void setDate(Date date) {
 
 
 
+public String getDescription() {
+	return description;
+}
+
+
+
+public void setDescription(String description) {
+	this.description =description;
+}
 
 
 

@@ -23,6 +23,7 @@ public class SiteEscalade {
 	private String adresse ;
 	private String codePostal;
 	private String commentaire;
+	private String statut;
 	@ManyToOne
 	private Region region;
 	@OneToMany(mappedBy="site",fetch=FetchType.LAZY)
@@ -37,13 +38,13 @@ public class SiteEscalade {
 	}
 
 
-	public SiteEscalade(String adresse, String codePostal, String commentaire, Region region) {
+	public SiteEscalade(String adresse, String codePostal, String commentaire, Region region,String statut) {
 		super();
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.commentaire = commentaire;
 		this.region = region;
-	
+		this.statut = statut;
 	}
 
 
@@ -104,6 +105,16 @@ public class SiteEscalade {
 
 	public void setTagues(Collection<Tague> tagues) {
 		this.tagues = tagues;
+	}
+
+
+	public String getStatut() {
+		return statut;
+	}
+
+
+	public void setStatut(String statut) {
+		this.statut = statut;
 	}
 	
 	

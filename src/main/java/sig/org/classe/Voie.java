@@ -26,6 +26,7 @@ private Long codeVoie;
 	@OneToMany(mappedBy="voie",fetch=FetchType.LAZY)
 	private Collection<Commentaires> commentaires;
 	
+	
 	public Voie() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -36,6 +37,7 @@ private Long codeVoie;
 		this.longueur = longueur;
 		this.cotation = cotation;
 		this.site = site;
+		
 	}
 	public String getNom() {
 		return nom;
