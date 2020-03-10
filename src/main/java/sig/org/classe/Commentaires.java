@@ -79,6 +79,12 @@ public void setDescription(String description) {
 
 
 
+public Long getCodeCommentaire() {
+	return codeCommentaire;
+}
+
+
+
 
 
 

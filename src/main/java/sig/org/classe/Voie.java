@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-
 public class Voie implements Serializable {
 @ Id @GeneratedValue
 private Long codeVoie;
@@ -63,6 +62,10 @@ private Long codeVoie;
 	public void setSite(SiteEscalade site) {
 		this.site = site;
 	}
+	public Long getCodeVoie() {
+		return codeVoie;
+	}
+	
 	
 	
 	

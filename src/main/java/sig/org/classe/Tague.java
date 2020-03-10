@@ -50,6 +50,9 @@ public class Tague {
 	public void setStatut(String statut) {
 		this.statut = statut;
 	}
+	public Long getCodeTague() {
+		return codeTague;
+	}
 	
 	
 }

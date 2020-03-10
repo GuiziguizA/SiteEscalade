@@ -29,7 +29,7 @@ public Topos() {
 	super();
 	// TODO Auto-generated constructor stub
 }
-public Topos(Long codeTopos,String nom, String description, String dateDeParuption, Utilisateur utilisateur, String statut,
+public Topos(String nom, String description, String dateDeParuption, Utilisateur utilisateur, String statut,
 		Region region) {
 	super();
 	this.nom = nom;
@@ -74,6 +74,9 @@ public Region getRegion() {
 }
 public void setRegion(Region region) {
 	this.region = region;
+}
+public Long getCodeTopos() {
+	return codeTopos;
 }
 
 

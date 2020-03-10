@@ -20,6 +20,7 @@ public class SiteEscalade {
 
 	@ Id @GeneratedValue 
 	private Long codeSiteEscalade;
+	private String nom;
 	private String adresse ;
 	private String codePostal;
 	private String commentaire;
@@ -38,13 +39,14 @@ public class SiteEscalade {
 	}
 
 
-	public SiteEscalade(String adresse, String codePostal, String commentaire, Region region,String statut) {
+	public SiteEscalade(String nom,String adresse, String codePostal, String commentaire, Region region,String statut) {
 		super();
 		this.adresse = adresse;
 		this.codePostal = codePostal;
 		this.commentaire = commentaire;
 		this.region = region;
 		this.statut = statut;
+		this.nom=nom;
 	}
 
 
@@ -115,6 +117,16 @@ public class SiteEscalade {
 
 	public void setStatut(String statut) {
 		this.statut = statut;
+	}
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 	
 	

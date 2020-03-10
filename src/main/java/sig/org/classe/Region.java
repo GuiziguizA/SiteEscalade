@@ -24,10 +24,10 @@ private Collection<SiteEscalade> siteEscalade;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Region( Long codeRegion,String nom) {
+	public Region(String nom) {
 		super();
 		this.nom = nom;
-		this.topos = topos;
+		
 	}
 
 	public String getNom() {

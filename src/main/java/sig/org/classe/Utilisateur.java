@@ -17,7 +17,7 @@ public class Utilisateur implements Serializable{
 private Long codeUtilisateur;
 	private String nom;
 	
-	private String password;
+	private String passeword;
 	@Column(unique =true )
 	private String mail;
 	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
@@ -29,11 +29,11 @@ private Collection<Commentaires> commentaires;
 		// TODO Auto-generated constructor stub
 	}
 
-	public Utilisateur(String nom, String mail) {
+	public Utilisateur( String passeword,String nom, String mail) {
 		super();
 		this.nom = nom;
 		this.mail = mail;
-	
+		this.passeword=passeword;
 	}
 
 	public String getNom() {
@@ -59,6 +59,16 @@ private Collection<Commentaires> commentaires;
 	public void setTagues(Collection<Tague> tagues) {
 		this.tagues = tagues;
 	}
-	
+
+	public String getPasseword() {
+		return passeword;
+	}
+
+	public void setPasseword(String passeword) {
+		this.passeword = passeword;
+	}
+	public Long getCodeUtilisateur() {
+		return codeUtilisateur;
+	}
 	
 }
