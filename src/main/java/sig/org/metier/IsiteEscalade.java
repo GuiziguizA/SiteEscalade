@@ -1,5 +1,11 @@
 package sig.org.metier;
 
-public interface IsiteEscalade {
+import javax.management.relation.RelationNotFoundException;
+
+import sig.org.classe.SiteEscalade;
+
+public interface ISiteEscalade {
+
+	SiteEscalade afficherSiteEscaladeParRegion(Long Region) throws RelationNotFoundException;
 
 }

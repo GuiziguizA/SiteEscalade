@@ -14,8 +14,8 @@ public interface Itague {
 
 	public void deleteTagueById(Long id) throws RelationNotFoundException;
 
-	List<Tague> getAllTague();
+	public List<Tague> getAllTague();
 
-	Tague getTagueById(Long id) throws RelationNotFoundException;
+	public Tague getTagueById(Long id) throws RelationNotFoundException;
 
 }

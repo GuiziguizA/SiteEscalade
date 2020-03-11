@@ -4,11 +4,9 @@ import java.util.List;
 
 import javax.management.relation.RelationNotFoundException;
 
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import org.springframework.jca.cci.RecordTypeNotSupportedException;
 
-import sig.org.classe.SiteEscalade;
 import sig.org.classe.Voie;
 
 public interface Ivoie {

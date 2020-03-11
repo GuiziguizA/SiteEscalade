@@ -9,29 +9,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 
-import org.hibernate.Criteria;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
-import org.hibernate.criterion.Restrictions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.jpa.domain.Specification;
+
 import org.springframework.jca.cci.RecordTypeNotSupportedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import sig.org.classe.SiteEscalade;
 import sig.org.classe.Voie;
-
 import sig.org.dao.VoieRepository;
+
+
+
 @Service
 @Transactional
 public class VoieMetier implements Ivoie{
@@ -41,7 +34,7 @@ public class VoieMetier implements Ivoie{
 private EntityManager em;
 	
 
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.baeldung.movie__catalog");
+EntityManagerFactory emf = Persistence.createEntityManagerFactory("myBase");
 
 
 
@@ -110,6 +103,16 @@ public VoieMetier () {
             return new ArrayList<Voie>();
         }
     }
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 	
 @Override
 
