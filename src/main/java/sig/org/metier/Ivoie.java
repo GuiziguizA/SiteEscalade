@@ -11,22 +11,19 @@ import sig.org.classe.Voie;
 
 public interface Ivoie {
 
-	public Voie createOrUpdateVoie(Voie entity) throws RecordTypeNotSupportedException;
+	
 
-	public void deleteVoieById(Long id) throws RelationNotFoundException;
+	public void deleteVoieById(Long id) throws RelationNotFoundException, Exception;
 
-	Voie getVoieById(Long id) throws RelationNotFoundException;
+	public Voie getVoieById(Long id) throws RelationNotFoundException;
 
 	public List<Voie> getAllVoie();
 
-	 public   List<Voie> getVoieCritere(String name, String cotation);
 
-	/*
-	 * public Specification<Voie> withCotation(String cotation);
-	 * 
-	 * public Specification<Voie> withlongueur(String longueur);
-	 * 
-	 * public Specification<Voie> withSite(SiteEscalade site);
-	 */
+	public List<Voie> getSiteEscalade(Long codeSiteEscalade)throws Exception;
+	public Voie createVoie(String nom, String cotation, String longueur, Long codeSiteEscalade) throws Exception;
 
+	public List<Voie> getVoieCritere(String name, String cotation, String longueur) throws Exception;
+
+	
 }

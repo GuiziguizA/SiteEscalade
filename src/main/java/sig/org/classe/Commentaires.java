@@ -21,8 +21,9 @@ public class Commentaires implements Serializable{
 private Utilisateur utilisateur;
 private String description;	
 	@ManyToOne
-	private Voie voie;
-private Date date;
+	@JoinColumn(name="ID_SITE")
+	private SiteEscalade site;
+	private Date date;
 
 
 

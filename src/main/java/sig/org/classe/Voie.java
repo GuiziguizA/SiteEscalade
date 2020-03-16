@@ -22,8 +22,6 @@ private Long codeVoie;
 	@ManyToOne
 	@JoinColumn(name="ID_SITE")
 	private SiteEscalade site;
-	@OneToMany(mappedBy="voie",fetch=FetchType.LAZY)
-	private Collection<Commentaires> commentaires;
 	
 	
 	public Voie() {

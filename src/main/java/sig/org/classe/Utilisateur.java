@@ -20,8 +20,7 @@ private Long codeUtilisateur;
 	private String passeword;
 	@Column(unique =true )
 	private String mail;
-	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
-	private Collection<Tague> tagues;
+	
 	@OneToMany(mappedBy="utilisateur",fetch=FetchType.LAZY)
 private Collection<Commentaires> commentaires;
 	public Utilisateur() {
@@ -52,13 +51,6 @@ private Collection<Commentaires> commentaires;
 		this.mail = mail;
 	}
 
-	public Collection<Tague> getTagues() {
-		return tagues;
-	}
-
-	public void setTagues(Collection<Tague> tagues) {
-		this.tagues = tagues;
-	}
 
 	public String getPasseword() {
 		return passeword;

@@ -20,6 +20,8 @@ public class SiteEscalade {
 
 	@ Id @GeneratedValue 
 	private Long codeSiteEscalade;
+	
+
 	private String nom;
 	private String adresse ;
 	private String codePostal;
@@ -29,9 +31,10 @@ public class SiteEscalade {
 	private Region region;
 	@OneToMany(mappedBy="site",fetch=FetchType.LAZY)
 	private Collection<Voie> voies;
-	@OneToMany(mappedBy="site",fetch=FetchType.LAZY)
-	private Collection<Tague> tagues;
 	
+	
+	@OneToMany(mappedBy="site",fetch=FetchType.LAZY)
+	private Collection<Commentaires> commentaires;
 	
 	public SiteEscalade() {
 		super();
@@ -100,14 +103,7 @@ public class SiteEscalade {
 	}
 
 
-	public Collection<Tague> getTagues() {
-		return tagues;
-	}
-
-
-	public void setTagues(Collection<Tague> tagues) {
-		this.tagues = tagues;
-	}
+	
 
 
 	public String getStatut() {
@@ -129,6 +125,11 @@ public class SiteEscalade {
 		this.nom = nom;
 	}
 	
+	
+	public Long getCodeSiteEscalade() {
+		return codeSiteEscalade;
+	}
+
 	
 	
 	

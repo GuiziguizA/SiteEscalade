@@ -20,7 +20,10 @@ import org.springframework.jca.cci.RecordTypeNotSupportedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javassist.expr.NewArray;
+import sig.org.classe.SiteEscalade;
 import sig.org.classe.Voie;
+import sig.org.dao.SiteEscaladeRepository;
 import sig.org.dao.VoieRepository;
 
 
@@ -30,50 +33,44 @@ import sig.org.dao.VoieRepository;
 public class VoieMetier implements Ivoie{
 @Autowired
 	private VoieRepository voieRepository;
-@PersistenceContext
-private EntityManager em;
+@Autowired
+private SiteEscaladeRepository siteRepository;
 	
 
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("myBase");
 
-
-
-
-public VoieMetier () {
-
-	
-	em=emf.createEntityManager();
-	
-	
-}
 	@Override	
-	public Voie createOrUpdateVoie(Voie entity) throws RecordTypeNotSupportedException {
+	public Voie createVoie(String nom, String cotation , String longueur,Long codeSiteEscalade) throws Exception {
+		Optional<SiteEscalade> site = siteRepository.findById(codeSiteEscalade);
+		if(!site.isPresent()) {
+			throw new Exception("Le site n'existe pas");
+		}
 		
-		Optional<Voie> voie =voieRepository.findById(entity.getCodeVoie()); 
-		 if( voie.isPresent()) { 
-			Voie  newEntity = voie.get();
-			newEntity.setCotation(entity.getCotation());
-           newEntity.setLongueur(entity.getLongueur());
-           newEntity.setNom(entity.getNom());;
-           newEntity.setSite(entity.getSite());
-           
-           return newEntity;
-	        } else {
-	            entity =voieRepository.save(entity);
-	             
-	            return entity;
-	        }
+		
+		Optional<Voie> voie =voieRepository.findVoieByNomAndSite(nom, site.get()); 
+		 if( voie.isPresent()) { 	
+			 throw new Exception("La voie  existe deja");
+			}
+		 
+		 
+			Voie  newEntity = new Voie();
+			newEntity.setCotation(cotation);
+           newEntity.setLongueur(longueur);
+           newEntity.setNom(nom);
+          newEntity.setSite(site.get());
+          
+          return voieRepository.save(newEntity);
+         
 	}
 
 	@Override
-	public void deleteVoieById(Long id) throws RelationNotFoundException {
-		 Optional<Voie>voie = voieRepository.findById(id);
+	public void deleteVoieById(Long codeVoie) throws Exception {
+		 Optional<Voie>voie = voieRepository.findById(codeVoie);
          
 	        if(voie.isPresent()) 
 	        {
-	        	voieRepository.deleteById(id);
+	        	voieRepository.deleteById(codeVoie);
 	        } else {
-	            throw new RelationNotFoundException("No voie record exist for given id");
+	            throw new Exception("Cette Voie n'existe pas");
 	        }
 	    } 	
 	
@@ -87,7 +84,7 @@ public VoieMetier () {
         if(voie.isPresent()) {
             return voie.get();
         } else {
-            throw new RelationNotFoundException("No voie record exist for given id");
+            throw new RelationNotFoundException("Cette Voie n'existe pas");
         }
 
 	}
@@ -103,26 +100,40 @@ public VoieMetier () {
             return new ArrayList<Voie>();
         }
     }
-	
-	
 
 	
-	
-	
-	
-	
-	
+	@Override
+	public List<Voie> getVoieCritere(String name, String cotation,String longueur) throws Exception {
+		List<Voie> listVoieCritere = voieRepository.findVoieByNomAndCotationAndLongueur(name, cotation, longueur);
+		
+		if (listVoieCritere.isEmpty()) {
+			 throw new Exception("Saisissez au moins un critere de selection");
+		}
+		
+		
+		
+		
+		return listVoieCritere;
+	}
 	
 	
 @Override
+	public List<Voie> getSiteEscalade(Long codeSiteEscalade)throws Exception{
+		Optional<SiteEscalade> site = siteRepository.findById(codeSiteEscalade);
+		if(!site.isPresent()) {
+			throw new Exception("Le site n'existe pas");
+		}
+		
+	List<Voie> listVoieSite = voieRepository.findBySite(site.get());
+		
+		return listVoieSite;
+	}
+	
+	
+	
+	
+	
+	
 
-	 public   List<Voie> getVoieCritere(String name, String cotation) {
-			
-	 TypedQuery<Voie> query=em.createQuery("from Voie c where ((:name is null and c.name is null) or c.name = :name) and c.cotation =:cotation",Voie.class)
-			 .setParameter("name", name)
-			 .setParameter("cotation", cotation);
-	 List<Voie> results = query.getResultList();
-return results;
-}
 
 }
